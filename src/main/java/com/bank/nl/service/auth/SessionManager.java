@@ -4,4 +4,5 @@ import java.util.UUID;
 
 public interface SessionManager {
     UUID createNewSession();
+    boolean isValidSession(UUID token);
 }
