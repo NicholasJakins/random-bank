@@ -1,7 +1,5 @@
 package com.bank.nl.filter;
 
-import com.bank.nl.exception.BusinessException;
-import com.bank.nl.model.ResponseCode;
 import com.bank.nl.service.auth.SessionManager;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

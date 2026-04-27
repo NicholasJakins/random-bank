@@ -85,7 +85,21 @@
 								<additionalModelTypeAnnotations>@lombok.experimental.SuperBuilder(toBuilder =
 									true);@lombok.NoArgsConstructor</additionalModelTypeAnnotations>
 								<useSpringBoot3>true</useSpringBoot3>
+								<useBeanValidation>false</useBeanValidation>
 							</configOptions>
+							<additionalProperties>
+								<!-- disables @Valid generation -->
+								<performBeanValidation>false</performBeanValidation>
+
+								<!-- optional: removes Jakarta validation annotations entirely -->
+								<useBeanValidation>false</useBeanValidation>
+
+								<!-- makes it Spring Boot 3 / jakarta.* instead of javax.* -->
+								<useJakartaEe>true</useJakartaEe>
+
+								<!-- optional formatting / structure controls -->
+								<hideGenerationTimestamp>true</hideGenerationTimestamp>
+							</additionalProperties>
 						</configuration>
 					</execution>
 				</executions>

@@ -9,8 +9,7 @@ public enum ResponseCode {
     USER_ALREADY_EXISTS(101, HttpStatus.BAD_REQUEST),
     WRONG_CREDENTIALS(102, HttpStatus.BAD_REQUEST),
     EXPIRED_TOKEN(103, HttpStatus.BAD_REQUEST),
-    MALFORMED_BEARER(104, HttpStatus.BAD_REQUEST),
-    INVALID_SESSION(105, HttpStatus.BAD_REQUEST),
+    INVALID_CUSTOMER_AGE(104, HttpStatus.BAD_REQUEST)
     ;
 
     private final int code;

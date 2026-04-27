@@ -20,12 +20,9 @@ public class LoginDelegate implements LoginApiDelegate {
 
     @Override
     public ResponseEntity<AccessToken> loginCustomer(LoginRequest loginRequest) {
-        var authentication = authenticationManager.authenticate(
+        authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
         UUID sessionToken = sessionManager.createNewSession();
-
-        // Create a session and return token
         return ResponseEntity.ok().body(AccessToken.builder().token(sessionToken.toString()).build());
     }
 }

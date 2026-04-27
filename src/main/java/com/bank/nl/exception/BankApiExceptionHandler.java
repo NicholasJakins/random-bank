@@ -20,7 +20,7 @@ public class BankApiExceptionHandler {
     public ResponseEntity<Error> handleGenericException(Exception exception) {
         return ResponseEntity.internalServerError()
                 .body(Error.builder().code(ResponseCode.GENERIC_ERROR.getCode())
-                        .message("Generic server error").build());
+                        .message(exception.getMessage()).build());
     }
 
 }

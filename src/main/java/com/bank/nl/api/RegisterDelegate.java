@@ -9,18 +9,21 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.nio.charset.StandardCharsets;
 
 @Service
 @Slf4j
 @AllArgsConstructor
+@Validated
 public class RegisterDelegate implements RegisterApiDelegate {
 
     private final RegisterCustomerService registerCustomerService;
 
     @Override
     public ResponseEntity<RegisterCustomerResponse> registerCustomer(RegisterCustomerRequest registerCustomerRequest) {
+
         var address = Address.builder()
                 .line1(registerCustomerRequest.getAddress().getLine1())
                 .line2(registerCustomerRequest.getAddress().getLine2())

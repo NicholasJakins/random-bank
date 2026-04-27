@@ -4,9 +4,6 @@ import com.bank.nl.filter.SessionValidateFilter;
 import com.bank.nl.model.Error;
 import com.bank.nl.model.ResponseCode;
 import com.bank.nl.service.auth.SessionManager;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +14,9 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.ErrorResponse;
 import tools.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
 
 @Configuration
 @AllArgsConstructor
@@ -40,11 +32,6 @@ public class AppSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm ->
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)
                 .build();
@@ -62,10 +49,6 @@ public class AppSecurityConfig {
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .securityMatcher("/overview")
                 .addFilterAfter(new SessionValidateFilter(sessionManager), ExceptionTranslationFilter.class)
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/overview").permitAll()
-                        .anyRequest().authenticated()
-                )
                 .exceptionHandling(ex -> ex
                     .authenticationEntryPoint((request, response, authException) -> {
                             var errorResponse = Error.builder()

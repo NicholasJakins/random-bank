@@ -23,7 +23,6 @@ public class CustomerEntity {
     private String addressLine2;
     private String addressLine3;
 
-    // TODO: Country codes should be configured from application properties
     private String countryCode;
 
 }
