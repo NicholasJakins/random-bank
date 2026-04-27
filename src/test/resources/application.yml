@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: random-bank
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
