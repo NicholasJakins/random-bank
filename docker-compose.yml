@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+#  mock-api:
+#    image: "wiremock/wiremock:3.5.2"
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#      - ./wiremock/mappings:/home/wiremock/mappings
+#    entrypoint: ["/docker-entrypoint.sh", "--port=8000"]
+  postgres:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: passphrase
+      POSTGRES_DB: deliveries
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+#  application:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - mock-api
+#      - postgres
+
+volumes:
+  postgres_data:
