@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: random-bank
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bank
+    username: test
+    password: passphrase
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+
