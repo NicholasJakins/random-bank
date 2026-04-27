@@ -1,0 +1,145 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /login:
+    post:
+      summary: Login with credentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      operationId: loginCustomer
+      tags:
+        - customer
+      responses:
+        200:
+          description: Temporary password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /register:
+    post:
+      summary: Register a user with basic details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterCustomerRequest'
+      operationId: registerCustomer
+      tags:
+        - customer
+      responses:
+        201:
+          description: Temporary password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterCustomerResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "sample-token"
+    LoginRequest:
+      type: object
+      properties:
+        password:
+          type: string
+          example: "TempPass!123"
+        username:
+          type: string
+          example: "user"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    RegisterCustomerResponse:
+      type: object
+      properties:
+        password:
+          type: string
+          example: "TempPass!123"
+
+    RegisterCustomerRequest:
+      type: object
+      required:
+        - username
+        - firstName
+        - surname
+        - address
+        - birthdate
+      properties:
+        username:
+          type: string
+          example: "jdoe123"
+
+        firstName:
+          type: string
+          example: "John"
+
+        surname:
+          type: string
+          example: "Doe"
+
+        birthdate:
+          type: date
+          example: "1999-01-01"
+
+        address:
+          $ref: '#/components/schemas/Address'
+
+    Address:
+      type: object
+      required:
+        - line1
+        - countryCode
+      properties:
+        line1:
+          type: string
+          example: "123 Main Street"
+
+        line2:
+          type: string
+          example: "Apartment 4B"
+
+        line3:
+          type: string
+          example: "Business Park"
+
+        countryCode:
+          type: string
+          example: "NL"
