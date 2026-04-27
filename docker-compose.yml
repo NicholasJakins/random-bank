@@ -14,5 +14,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+
 volumes:
   postgres_data:

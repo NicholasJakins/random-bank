@@ -1,0 +1,166 @@
+{
+  "info": {
+    "_postman_id": "ec3a5eab-bc58-47f9-9d51-d9135cbdd9ea",
+    "name": "random-bank",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54341826",
+    "_collection_link": "https://go.postman.co/collection/54341826-ec3a5eab-bc58-47f9-9d51-d9135cbdd9ea?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"Riley\",\n  \"password\": \"VKdYr6nJGZ$eYeU3\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"Riley\",\n  \"firstName\": \"Manson\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"2000-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"BE\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Overview",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer 2a2968cb-01fc-48e7-82a0-44980e284dab",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/overview?username=Riley",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "overview"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "Riley"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create user younger than 18",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"Ali\",\n  \"firstName\": \"John\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"2021-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"BE\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create user invalid country code",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"Peter\",\n  \"firstName\": \"John\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"1990-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"AA\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "register"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

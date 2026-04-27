@@ -1,3 +1,22 @@
+## How to run and test locally
+
+```bash
+docker build .
+```
+
+```bash
+docker compose up
+```
+
+The Postman collection can be found in the postman directory.
+
+The flow should be:
+
+1) Create a user by calling the register endpoint
+   2) The API response gives you the temp password
+2) Call the login endpoint by providing the username and password in the body (from the first call)
+3) Call get overview which should take in the token as a Bearer header. Bearer <accessToken> and username as a query string parameter.
+
 ## Functional Requirements
 
 - Customers must be able to register by providing basic details such as name, address, username,
@@ -25,8 +44,7 @@ future.
 - [ ] Registration and account creation should include a country code, can be in the payload. List of supported country codes in application yaml
 - [ ] Schemas
   - _sessions_ table for managing logins and sessions
-  - _customer_ holds name and surname
-  - _address_ holds foreign key to customer
+  - _customer_ holds name and surname and address
   - _credentials_ holds password and username (primary key)
 
 ## Technical requirements and tools
@@ -42,7 +60,5 @@ future.
 
 - Masking of sensitive date
 - Log out functionality
-- Spring security for login
 - Test containers
-- Support for updating account type, balance
-- Hashing of password in the database
+- Support for updating account types
