@@ -9,6 +9,39 @@
   "item": [
     {
       "name": "login",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "console.log(\"========\")",
+              "console.log(pm.collectionVariables.get(\"password\"))",
+              "console.log(\"========\")",
+              "",
+              "console.log(\"========\")",
+              "console.log(pm.collectionVariables.get(\"username\"))",
+              "console.log(\"========\")"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const json = pm.response.json();",
+              "",
+              "console.log(\"Setting token: \" + json.token)",
+              "pm.collectionVariables.set(\"token\", json.token);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -20,7 +53,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"Riley\",\n  \"password\": \"VKdYr6nJGZ$eYeU3\"\n}",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -43,6 +76,43 @@
     },
     {
       "name": "Create a user",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const json = pm.response.json();",
+              "",
+              "console.log(\"Setting password: \" + json.password)",
+              "pm.collectionVariables.set(\"password\", json.password);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "let body = {};",
+              "try {",
+              "    body = JSON.parse(pm.request.body.raw || \"{}\");",
+              "} catch (e) { }",
+              "console.log(\"Hello\")",
+              "if (body.username) {",
+              "    console.log(\"Setting username: \" + body.username)",
+              "    pm.collectionVariables.set(\"username\", body.username);",
+              "} else {",
+              "    console.warn(\"No username found in request body\");",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [
@@ -54,7 +124,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"Riley\",\n  \"firstName\": \"Manson\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"2000-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"BE\"\n  }\n}",
+          "raw": "{\n  \"username\": \"smithy\",\n  \"firstName\": \"Manson\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"2000-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"BE\"\n  }\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -82,12 +152,12 @@
         "header": [
           {
             "key": "Authorization",
-            "value": "Bearer 2a2968cb-01fc-48e7-82a0-44980e284dab",
+            "value": "Bearer {{token}}",
             "type": "text"
           }
         ],
         "url": {
-          "raw": "http://localhost:8080/overview?username=Riley",
+          "raw": "http://localhost:8080/overview?username={{username}}",
           "protocol": "http",
           "host": [
             "localhost"
@@ -99,7 +169,7 @@
           "query": [
             {
               "key": "username",
-              "value": "Riley"
+              "value": "{{username}}"
             }
           ]
         }
@@ -161,6 +231,20 @@
         }
       },
       "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "username",
+      "value": ""
+    },
+    {
+      "key": "password",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
     }
   ]
 }

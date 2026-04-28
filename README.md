@@ -10,12 +10,13 @@ docker compose up
 
 The Postman collection can be found in the postman directory.
 
+Note that Postman is setting collection scope variables so executing in order should work.
+
 The flow should be:
 
 1) Create a user by calling the register endpoint
-   2) The API response gives you the temp password
-2) Call the login endpoint by providing the username and password in the body (from the first call)
-3) Call get overview which should take in the token as a Bearer header. Bearer <accessToken> and username as a query string parameter.
+2) Call the login endpoint to receive an accessToken
+3) Call get overview 
 
 ## Functional Requirements
 
@@ -39,13 +40,13 @@ future.
 ## Approach details
 
 - [ ] POST /login needs to generate a session token
-- [ ] POST /register 
 - [ ] GET /overview needs to be tied to a session, spring security backed by postges, with username check
 - [ ] Registration and account creation should include a country code, can be in the payload. List of supported country codes in application yaml
 - [ ] Schemas
   - _sessions_ table for managing logins and sessions
   - _customer_ holds name and surname and address
   - _credentials_ holds password and username (primary key)
+    - Password is hashed
 
 ## Technical requirements and tools
 
@@ -58,7 +59,7 @@ future.
 
 ### Nice to have
 
-- Masking of sensitive date
+- Masking of sensitive data
 - Log out functionality
 - Test containers
 - Support for updating account types
