@@ -23,7 +23,7 @@ paths:
         - bearerAuth: [ ]
       responses:
         200:
-          description: Temporary password
+          description: An overview of accounts.
           content:
             application/json:
               schema:
@@ -46,7 +46,7 @@ paths:
         - customer
       responses:
         200:
-          description: Temporary password
+          description: Access token
           content:
             application/json:
               schema:

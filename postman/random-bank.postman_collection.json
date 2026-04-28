@@ -124,7 +124,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"smithy\",\n  \"firstName\": \"Manson\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"2000-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"BE\"\n  }\n}",
+          "raw": "{\n  \"username\": \"smithi\",\n  \"firstName\": \"Manson\",\n  \"surname\": \"Smith\",\n  \"birthdate\": \"2000-01-01\",\n  \"address\": {\n    \"line1\": \"123 Main Street\",\n    \"line2\": \"Apartment 4B\",\n    \"line3\": \"Business Park\",\n    \"countryCode\": \"BE\"\n  }\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -227,6 +227,95 @@
           "port": "8080",
           "path": [
             "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login wrong password and username",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"username\",\n  \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Overview Wrong access token",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer a36b31d8-2dbe-4aba-b8a4-96bbabcd2640",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/overview?username=username",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "overview"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "username"
+            }
           ]
         }
       },

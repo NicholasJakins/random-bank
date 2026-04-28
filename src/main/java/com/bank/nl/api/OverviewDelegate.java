@@ -1,6 +1,5 @@
 package com.bank.nl.api;
 
-import com.bank.nl.model.AccessToken;
 import com.bank.nl.model.AccountResponse;
 import com.bank.nl.service.AccountOverviewService;
 import lombok.AllArgsConstructor;
