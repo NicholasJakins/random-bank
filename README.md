@@ -14,9 +14,9 @@ Note that Postman is setting collection scope variables so executing in order sh
 
 The flow should be:
 
-1) Create a user by calling the register endpoint
-2) Call the login endpoint to receive an accessToken
-3) Call get overview 
+1) (Create a user) Create a user by calling the register endpoint
+2) (login) Call the login endpoint to receive an accessToken
+3) (Get Overview) Call get overview 
 
 ## Functional Requirements
 
